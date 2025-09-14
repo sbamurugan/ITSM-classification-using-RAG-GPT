@@ -10,7 +10,7 @@ import uuid
 # --------------------------
 # CONFIG
 # --------------------------
-CORE42_API_KEY = os.getenv("CORE42_API_KEY", "3367724bb8cc48829031ad811d047cad")
+CORE42_API_KEY = os.getenv("CORE42_API_KEY", "XXXXXXX")
 CORE42_BASE = "https://api.core42.ai/v1"
 os.environ["OPENAI_API_KEY"] = CORE42_API_KEY  # keep compatibility
 
@@ -145,3 +145,4 @@ for i, doc in enumerate(stored_docs, 1):
     print(f"\n--- Stored Document {i} ---")
     for k, v in doc.items():
         print(f"{k}: {v}")
+
