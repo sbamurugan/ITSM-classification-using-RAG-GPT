@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IT Service Desk Agent</title>
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .chat-container {
+      width: 600px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .message {
+      margin-bottom: 20px;
+    }
+
+    .user-msg {
+      background: #e1f5fe;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .bot-msg {
+      background: #e8f5e9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      resize: none;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      background-color: #1976d2;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    .result-box {
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+
+    .spinner {
+      display: none;
+      margin-top: 15px;
+      text-align: center;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+  <script>
+    function showSpinner() {
+      document.getElementById("spinner").style.display = "block";
+    }
+  </script>
+</head>
+<body>
+  <div class="chat-container">
+    <h2>🛠️ IT Service Desk Ticket Classifier</h2>
+
+    {% if query %}
+      <div class="message user-msg">
+        <strong>You:</strong> {{ query }}
+      </div>
+    {% endif %}
+
+    {% if result %}
+      <div class="message bot-msg">
+        <strong>Assistant:</strong>
+        <div class="result-box">{{ result }}</div>
+      </div>
+    {% endif %}
+
+    <form method="POST" onsubmit="showSpinner()">
+      <textarea name="query" rows="4" placeholder="Describe your issue here..." required>{{ query or '' }}</textarea>
+      <button type="submit">Send</button>
+      <div id="spinner" class="spinner">⏳ Processing your request...</div>
+    </form>
+  </div>
+</body>
+</html>
